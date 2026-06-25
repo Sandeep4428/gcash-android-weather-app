@@ -1,3 +1,6 @@
+import java.util.Properties
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,6 +8,10 @@ plugins {
 
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+}
+
+val localProperties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -19,6 +26,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "OPEN_WEATHER_API_KEY",
+            "\"${localProperties.getProperty("OPEN_WEATHER_API_KEY")}\""
+        )
     }
 
     buildTypes {
@@ -82,5 +95,12 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation(libs.datastore.preferences)
+
+    implementation(libs.play.services.location)
+
+    implementation(libs.androidx.runtime.livedata)
+
+    implementation(libs.androidx.material.icons.extended)
+
 
 }

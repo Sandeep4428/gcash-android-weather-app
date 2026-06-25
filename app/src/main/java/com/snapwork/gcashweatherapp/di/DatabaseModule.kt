@@ -3,6 +3,7 @@ package com.snapwork.gcashweatherapp.di
 import android.content.Context
 import androidx.room.Room
 import com.snapwork.gcashweatherapp.data.local.dao.UserDao
+import com.snapwork.gcashweatherapp.data.local.dao.WeatherHistoryDao
 import com.snapwork.gcashweatherapp.data.local.database.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -25,7 +26,8 @@ object DatabaseModule {
             context,
             AppDatabase::class.java,
             "gcash_weather_db"
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
@@ -33,5 +35,13 @@ object DatabaseModule {
         database: AppDatabase
     ): UserDao {
         return database.userDao()
+    }
+
+    @Provides
+    fun provideWeatherHistoryDao(
+        database: AppDatabase
+    ): WeatherHistoryDao {
+
+        return database.weatherHistoryDao()
     }
 }
