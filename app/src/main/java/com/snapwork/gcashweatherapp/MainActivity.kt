@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.snapwork.gcashweatherapp.presentation.login.LoginScreen
+import com.snapwork.gcashweatherapp.presentation.navigation.AppNavGraph
 import com.snapwork.gcashweatherapp.presentation.registration.RegisterScreen
 import com.snapwork.gcashweatherapp.ui.theme.GCashWeatherAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,15 @@ class MainActivity : ComponentActivity() {
 //                        println("Registration Success")
 //                    }
 //                )
+
+                setContent {
+
+                    GCashWeatherAppTheme {
+
+                        AppNavGraph()
+
+                    }
+                }
                 LoginScreen(
                     onLoginSuccess = {},
                     onNavigateToRegister = {}

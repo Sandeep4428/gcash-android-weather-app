@@ -2,6 +2,7 @@ package com.snapwork.gcashweatherapp.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.snapwork.gcashweatherapp.data.preferences.SessionManager
 import com.snapwork.gcashweatherapp.data.repository.AuthRepository
 import com.snapwork.gcashweatherapp.utils.PasswordUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repository: AuthRepository
+    private val repository: AuthRepository,
+    private val sessionManager: SessionManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
@@ -65,6 +67,8 @@ class LoginViewModel @Inject constructor(
                 updateError("Invalid password")
                 return@launch
             }
+
+            sessionManager.saveLogin()
 
             _uiState.value =
                 _uiState.value.copy(
