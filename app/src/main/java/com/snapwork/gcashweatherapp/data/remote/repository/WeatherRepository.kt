@@ -42,4 +42,9 @@ class WeatherRepository @Inject constructor(
     fun getWeatherHistory(): Flow<List<WeatherHistoryEntity>> {
         return dao.getHistory()
     }
+    suspend fun clearHistory() {
+
+        dao.clearHistory()
+
+    }
 }

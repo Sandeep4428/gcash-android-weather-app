@@ -19,4 +19,7 @@ interface WeatherHistoryDao {
         ORDER BY createdAt DESC
     """)
     fun getHistory(): Flow<List<WeatherHistoryEntity>>
+
+    @Query("DELETE FROM weather_history")
+    suspend fun clearHistory()
 }

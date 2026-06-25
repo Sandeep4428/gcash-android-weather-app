@@ -1,7 +1,17 @@
 package com.snapwork.gcashweatherapp.presentation.history
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -38,10 +48,24 @@ fun HistoryScreen(
             contentAlignment = Alignment.Center
         ) {
 
-            Text(
-                text = "No Weather History Available",
-                style = MaterialTheme.typography.titleMedium
-            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                Image(
+                    painter = painterResource(R.drawable.history),
+                    contentDescription = null,
+                    modifier = Modifier.size(80.dp)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    text = "No Weather History Available",
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+            }
 
         }
 
@@ -58,7 +82,7 @@ fun HistoryScreen(
 
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+                    elevation = CardDefaults.cardElevation(6.dp)
                 ) {
 
                     Column(
@@ -128,8 +152,6 @@ fun HistoryScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
 
-                            // Sunrise
-
                             Row(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
@@ -157,8 +179,6 @@ fun HistoryScreen(
                                 }
 
                             }
-
-                            // Sunset
 
                             Row(
                                 verticalAlignment = Alignment.CenterVertically
