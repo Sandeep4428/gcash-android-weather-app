@@ -74,8 +74,6 @@ Add:
 
 OPEN_WEATHER_API_KEY=YOUR_API_KEY
 
-Do not commit your API key.
-
 ---
 
 ## Build
